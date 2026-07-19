@@ -54,9 +54,10 @@
       const fmt = (t) => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
       const totalF = () => Math.max(0, Math.round((v.duration || 0) * this.fps));
       const curF = () => Math.round(v.currentTime * this.fps);
+      const setIcon = (el, html) => { if (el._ic !== html) { el._ic = html; el.innerHTML = html; } };
       const sync = () => {
-        playBtn.innerHTML = v.paused ? ICONS.play : ICONS.pause;
-        muteBtn.innerHTML = v.muted ? ICONS.sndOff : ICONS.sndOn;
+        setIcon(playBtn, v.paused ? ICONS.play : ICONS.pause);
+        setIcon(muteBtn, v.muted ? ICONS.sndOff : ICONS.sndOn);
         timeEl.textContent = `${fmt(v.currentTime || 0)} / ${fmt(v.duration || 0)}`;
         if (!this._scrubbing) range.value = curF();
         bar.classList.toggle('pinned', v.paused && v.currentTime > 0);
@@ -69,11 +70,11 @@
       ['play', 'pause', 'timeupdate', 'volumechange', 'seeked'].forEach(e => v.addEventListener(e, sync));
       const raf = () => { if (!v.paused) sync(); requestAnimationFrame(raf); };
       requestAnimationFrame(raf);
-      bar.addEventListener('click', (e) => e.stopPropagation());
-      playBtn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
-      v.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
-      muteBtn.addEventListener('click', (e) => { e.stopPropagation(); v.muted = !v.muted; });
-      $('.fs').addEventListener('click', (e) => { e.stopPropagation(); document.fullscreenElement === this ? document.exitFullscreen() : this.requestFullscreen(); });
+      bar.addEventListener('pointerdown', (e) => e.stopPropagation());
+      playBtn.addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); toggle(); });
+      v.addEventListener('pointerdown', (e) => { e.stopPropagation(); toggle(); });
+      muteBtn.addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); v.muted = !v.muted; });
+      $('.fs').addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); document.fullscreenElement === this ? document.exitFullscreen() : this.requestFullscreen(); });
       range.oninput = () => { this._scrubbing = true; v.pause(); v.currentTime = range.value / this.fps; };
       range.onchange = () => { this._scrubbing = false; };
       this.addEventListener('keydown', (e) => {
