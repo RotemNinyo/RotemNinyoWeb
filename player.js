@@ -1,6 +1,5 @@
 /* <frame-player src="..." fps="60" autoplay loop> — minimal animator-style video player
-   with play/pause, frame stepping, frame counter, scrubber, mute, fullscreen.
-   Keyboard (when hovered/focused): Space = play/pause, ←/→ = 1 frame, Shift+←/→ = 10 frames. */
+   with play/pause, scrubber, mute, fullscreen. Keyboard (when focused): Space = play/pause. */
 (function () {
   const ICONS = {
     play: '<svg viewBox="0 0 16 16" width="14" height="14"><path d="M3 1.5 14 8 3 14.5z" fill="currentColor"/></svg>',
@@ -41,9 +40,6 @@
 <video ${auto ? 'autoplay muted' : ''} ${loop ? 'loop' : ''} playsinline preload="auto"></video>
 <div class="bar">
   <button class="play" title="Play / Pause (Space)"></button>
-  <button class="sb" title="Previous frame (←)">${ICONS.stepB}</button>
-  <button class="sf" title="Next frame (→)">${ICONS.stepF}</button>
-  <span class="frame">F 0 / 0</span>
   <input type="range" min="0" max="0" step="1" value="0">
   <span class="time">0:00 / 0:00</span>
   <button class="mute" title="Mute / Unmute"></button>
@@ -53,7 +49,7 @@
       v.src = this.getAttribute('src') || '';
       this.setAttribute('tabindex', '0');
       const $ = (s) => root.querySelector(s);
-      const playBtn = $('.play'), muteBtn = $('.mute'), frameEl = $('.frame'),
+      const playBtn = $('.play'), muteBtn = $('.mute'),
             range = $('input'), timeEl = $('.time'), bar = $('.bar');
       const fmt = (t) => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
       const totalF = () => Math.max(0, Math.round((v.duration || 0) * this.fps));
@@ -61,32 +57,27 @@
       const sync = () => {
         playBtn.innerHTML = v.paused ? ICONS.play : ICONS.pause;
         muteBtn.innerHTML = v.muted ? ICONS.sndOff : ICONS.sndOn;
-        frameEl.textContent = `F ${curF()} / ${totalF()}`;
         timeEl.textContent = `${fmt(v.currentTime || 0)} / ${fmt(v.duration || 0)}`;
         if (!this._scrubbing) range.value = curF();
         bar.classList.toggle('pinned', v.paused && v.currentTime > 0);
       };
-      const step = (n) => {
-        v.pause();
-        v.currentTime = Math.min(Math.max(0, v.currentTime + n / this.fps), (v.duration || 0) - 0.0001);
+      const toggle = () => {
+        if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+        else v.pause();
       };
-      const toggle = () => { v.paused ? v.play() : v.pause(); };
       v.addEventListener('loadedmetadata', () => { range.max = totalF(); sync(); });
       ['play', 'pause', 'timeupdate', 'volumechange', 'seeked'].forEach(e => v.addEventListener(e, sync));
       const raf = () => { if (!v.paused) sync(); requestAnimationFrame(raf); };
       requestAnimationFrame(raf);
-      playBtn.onclick = toggle;
-      v.onclick = toggle;
-      $('.sb').onclick = () => step(-1);
-      $('.sf').onclick = () => step(1);
-      muteBtn.onclick = () => { v.muted = !v.muted; };
-      $('.fs').onclick = () => document.fullscreenElement === this ? document.exitFullscreen() : this.requestFullscreen();
+      bar.addEventListener('click', (e) => e.stopPropagation());
+      playBtn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
+      v.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
+      muteBtn.addEventListener('click', (e) => { e.stopPropagation(); v.muted = !v.muted; });
+      $('.fs').addEventListener('click', (e) => { e.stopPropagation(); document.fullscreenElement === this ? document.exitFullscreen() : this.requestFullscreen(); });
       range.oninput = () => { this._scrubbing = true; v.pause(); v.currentTime = range.value / this.fps; };
       range.onchange = () => { this._scrubbing = false; };
       this.addEventListener('keydown', (e) => {
         if (e.code === 'Space') { e.preventDefault(); toggle(); }
-        else if (e.key === 'ArrowRight') { e.preventDefault(); step(e.shiftKey ? 10 : 1); }
-        else if (e.key === 'ArrowLeft') { e.preventDefault(); step(e.shiftKey ? -10 : -1); }
       });
       sync();
     }
