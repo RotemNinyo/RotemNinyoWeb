@@ -64,7 +64,12 @@
     <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
       <article onClick="{{ p.open }}" style="display: flex; flex-direction: column; gap: 14px; cursor: pointer; border-radius: 12px" style-hover="transform: translateY(-4px)">
         <div style="aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); background: #14161a; position: relative">
-          <video src="{{ p.video }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
+          <sc-if value="{{ p.isVimeo }}" hint-placeholder-val="{{ false }}">
+            <iframe src="{{ p.thumbSrc }}" style="width: 100%; height: 100%; border: 0; display: block; pointer-events: none" title="{{ p.name }}"></iframe>
+          </sc-if>
+          <sc-if value="{{ p.isLocal }}" hint-placeholder-val="{{ true }}">
+            <video src="{{ p.video }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
+          </sc-if>
           <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(12,13,16,.25)">
             <div style="width: clamp(34px, 5vw, 54px); height: clamp(34px, 5vw, 54px); border-radius: 50%; background: rgba(12,13,16,.6); border: 1px solid rgba(255,255,255,.3); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px)">
               <div style="width: 0; height: 0; border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 15px solid #e8eaed; margin-left: 4px"></div>
@@ -91,7 +96,12 @@
         <button onClick="{{ closeLightbox }}" style="all: unset; cursor: pointer; color: #b7bcc4; font-size: 15px; padding: 8px 14px; border: 1px solid rgba(255,255,255,.2); border-radius: 8px" style-hover="color: #8ef0b6; border-color: #8ef0b6">✕ Close</button>
       </div>
       <div style="width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); background: #0c0d10">
-        <x-import component-from-global-scope="frame-player" from="./player.js" src="{{ lightboxVideo }}" fps="60" autoplay="" loop="" hint-size="100%,100%"></x-import>
+        <sc-if value="{{ lightboxIsVimeo }}" hint-placeholder-val="{{ false }}">
+          <iframe src="{{ lightboxVimeoSrc }}" style="width: 100%; height: 100%; border: 0; display: block" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen="{{ true }}" title="{{ lightboxName }}"></iframe>
+        </sc-if>
+        <sc-if value="{{ lightboxIsLocal }}" hint-placeholder-val="{{ false }}">
+          <x-import component-from-global-scope="frame-player" from="./player.js" src="{{ lightboxVideo }}" fps="60" autoplay="" loop="" hint-size="100%,100%"></x-import>
+        </sc-if>
       </div>
     </div>
   </div>
@@ -101,8 +111,9 @@
   <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(36px, 6vw, 80px)">
     <div>
       <h2 style="margin: 0 0 24px; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 44px); color: #f4f5f7">About</h2>
-      <p style="margin: 0 0 16px; font-size: 17px; line-height: 1.7; color: #b7bcc4; text-wrap: pretty">I'm a 3D gameplay animator with a passion for making characters feel alive, responsive, and fun to control. I focus on clear, expressive animation that enhances gameplay and adds personality to every movement — and I also rig, supporting character functionality and flexibility in-game.</p>
-      <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #b7bcc4; text-wrap: pretty">I've animated combat, bosses, and player characters across first- and third-person titles — including <em>Covenant</em>, a dark-fantasy action RPG, and <em>Duskfade</em> — working closely with design and engineering to integrate animation in Unreal Engine 5 and Unity.</p>
+      <p style="margin: 0 0 16px; font-size: 17px; line-height: 1.7; color: #b7bcc4; text-wrap: pretty">I'm a 3D gameplay animator who likes being involved in the full process, from figuring out how a character should move and fight to testing the animation in-game.</p>
+      <p style="margin: 0 0 16px; font-size: 17px; line-height: 1.7; color: #b7bcc4; text-wrap: pretty">I've worked on player characters, enemies, and bosses across a range of projects, and I also rig when a project needs it. Having experience with both helps me understand not only how an animation should look, but how the character needs to function.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #b7bcc4; text-wrap: pretty">What I enjoy most is working closely with other developers, solving problems together, and seeing the animation become part of something that feels good to play.</p>
     </div>
     <div style="display: flex; flex-direction: column; gap: 32px">
       <div style="display: flex; flex-direction: column; gap: 14px">
@@ -158,6 +169,9 @@ class Component extends DCLogic {
       lightboxOpen: !!lb,
       lightboxName: lb ? lb.name : '',
       lightboxVideo: lb ? lb.video : '',
+      lightboxIsVimeo: !!(lb && lb.vimeo),
+      lightboxIsLocal: !!(lb && !lb.vimeo),
+      lightboxVimeoSrc: lb && lb.vimeo ? "https://player.vimeo.com/video/" + lb.vimeo + "?autoplay=1" : '',
       closeLightbox: () => this.setState({ lightbox: null }),
       copyLabel: this.state.copied ? "✓ Copied" : "⧉ Copy",
       copyEmail: () => {
@@ -179,17 +193,23 @@ class Component extends DCLogic {
       openToWork: this.props.openToWork ?? true,
       vimeoSrc: "https://player.vimeo.com/video/" + (this.props.vimeoId ?? "846519353"),
       projects: [
-        { video: "videos/project-1.mp4", name: "Project One", role: "Gameplay Animator", description: "Full locomotion set and combat animations for a third-person action title — responsive movement, weapon handling, and hit reactions built for tight player feedback." },
+        { vimeo: "1208671173", name: "Boss Fight Prototype", role: "Gameplay Animator", description: "Responsible for the player and boss animation." },
         { video: "videos/project-2.mp4", name: "Project Two", role: "Character Animator", description: "Creature and NPC animation, from idle behaviors to full attack cycles, with a focus on readable silhouettes and weight." },
         { video: "videos/project-3.mp4", name: "Project Three", role: "Animator · Implementation", description: "Animation implementation in-engine: state machines, blend spaces, and root-motion tuning to make every input feel immediate." },
         { video: "videos/project-4.mp4", name: "Project Four", role: "Gameplay Animator", description: "Melee combo system: attack chains, cancels, and recovery frames tuned for responsive combat." },
         { video: "videos/project-5.mp4", name: "Project Five", role: "Character Animator", description: "Expressive character moments — emotes, interactions, and personality-driven idles." },
         { video: "videos/project-6.mp4", name: "Project Six", role: "Animator · Previs", description: "Gameplay previsualization and camera work to prove out mechanics before production." }
-      ].map(p => ({ ...p, open: () => this.setState({ lightbox: p }) })),
+      ].map(p => ({
+        ...p,
+        isVimeo: !!p.vimeo,
+        isLocal: !p.vimeo,
+        thumbSrc: p.vimeo ? "https://player.vimeo.com/video/" + p.vimeo + "?background=1&muted=1" : '',
+        open: () => this.setState({ lightbox: p })
+      })),
       tools: ["Autodesk Maya", "Unreal Engine", "Unity", "Blender"],
       experience: [
-        { role: "3D Gameplay Animator", studio: "Believer Entertainment", url: "https://believer.gg/", dates: "02/2026 – 06/2026" },
         { role: "3D Gameplay Animator & Rigger", studio: "Double Dusk", url: "https://doubledusk.com/", dates: "10/2025 – Present" },
+        { role: "3D Gameplay Animator", studio: "Believer Entertainment", url: "https://believer.gg/", dates: "02/2026 – 06/2026" },
         { role: "3D Gameplay Animator", studio: "Legion Studio — Covenant", url: "https://www.legionstudio.dev/", dates: "01/2024 – 10/2025" },
         { role: "3D Gameplay Animator & Rigger", studio: "Cult of the North", url: "https://x.com/cultofthenorth", dates: "04/2025 – 06/2025" },
         { role: "3D Gameplay Animator", studio: "Weird Beluga Studio — Duskfade", url: "https://twitter.com/i/status/1755275230354825704", dates: "09/2023 – 03/2024" }
