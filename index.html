@@ -101,15 +101,29 @@
   <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(36px, 6vw, 80px)">
     <div>
       <h2 style="margin: 0 0 24px; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 44px); color: #f4f5f7">About</h2>
-      <p style="margin: 0 0 16px; font-size: 17px; line-height: 1.7; color: #b7bcc4; text-wrap: pretty">I'm Rotem Ninyo, a 3D gameplay animator focused on making characters feel responsive, weighted, and alive under the player's hands. My work lives where animation meets game feel — locomotion sets, combat, and everything that has to read in a sixtieth of a second.</p>
-      <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #b7bcc4; text-wrap: pretty">I care about the craft of motion as much as the pipeline behind it: clean state machines, smart blending, and close collaboration with design and engineering to ship animation that plays as well as it looks.</p>
+      <p style="margin: 0 0 16px; font-size: 17px; line-height: 1.7; color: #b7bcc4; text-wrap: pretty">I'm a 3D gameplay animator with a passion for making characters feel alive, responsive, and fun to control. I focus on clear, expressive animation that enhances gameplay and adds personality to every movement — and I also rig, supporting character functionality and flexibility in-game.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #b7bcc4; text-wrap: pretty">I've animated combat, bosses, and player characters across first- and third-person titles — including <em>Covenant</em>, a dark-fantasy action RPG, and <em>Duskfade</em> — working closely with design and engineering to integrate animation in Unreal Engine 5 and Unity.</p>
     </div>
-    <div>
-      <h3 style="margin: 0 0 20px; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #8a9099">Software &amp; Tools</h3>
-      <div style="display: flex; flex-wrap: wrap; gap: 10px">
-        <sc-for list="{{ tools }}" as="t" hint-placeholder-count="6">
-          <span style="padding: 9px 16px; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; font-size: 14px; color: #d3d7dd; background: rgba(255,255,255,.03)">{{ t }}</span>
+    <div style="display: flex; flex-direction: column; gap: 32px">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <h3 style="margin: 0; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #8a9099">Experience</h3>
+        <sc-for list="{{ experience }}" as="e" hint-placeholder-count="5">
+          <div style="display: flex; gap: 16px; align-items: baseline; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.07); padding-bottom: 12px">
+            <div style="display: flex; flex-direction: column; gap: 2px">
+              <span style="font-size: 15px; font-weight: 600; color: #e8eaed">{{ e.role }}</span>
+              <a href="{{ e.url }}" target="_blank" style="font-size: 14px; color: #8ef0b6" style-hover="color: #b5f7cf">{{ e.studio }}</a>
+            </div>
+            <span style="font-size: 13px; color: #8a9099; white-space: nowrap">{{ e.dates }}</span>
+          </div>
         </sc-for>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 16px; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #8a9099">Software &amp; Tools</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px">
+          <sc-for list="{{ tools }}" as="t" hint-placeholder-count="4">
+            <span style="padding: 9px 16px; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; font-size: 14px; color: #d3d7dd; background: rgba(255,255,255,.03)">{{ t }}</span>
+          </sc-for>
+        </div>
       </div>
     </div>
   </div>
@@ -119,7 +133,10 @@
   <h2 style="margin: 0 0 14px; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 700; font-size: clamp(30px, 4.5vw, 52px); color: #f4f5f7">Let's work together</h2>
   <p style="margin: 0 0 36px; font-size: 17px; color: #8a9099">Available for studio roles and animation contracts.</p>
   <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center">
-    <a href="/cdn-cgi/l/email-protection#82f0edf6e7efecebecb0b6bac2e5efe3ebeeace1edef" style="padding: 13px 26px; border-radius: 8px; background: #8ef0b6; color: #0c0d10; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 15px" style-hover="background: #b5f7cf; color: #0c0d10"><span class="__cf_email__" data-cfemail="a1d3ced5c4cccfc8cf939599e1c6ccc0c8cd8fc2cecc">[email&#160;protected]</span></a>
+    <div style="display: inline-flex; align-items: stretch; border-radius: 8px; overflow: hidden">
+      <a href="mailto:rotemnin248@gmail.com" style="padding: 13px 22px; background: #8ef0b6; color: #0c0d10; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 15px; white-space: nowrap" style-hover="background: #b5f7cf; color: #0c0d10">rotemnin248@gmail.com</a>
+      <button onClick="{{ copyEmail }}" title="Copy email address" style="all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; padding: 0 18px; background: rgba(142,240,182,.16); color: #8ef0b6; border-left: 1px solid rgba(12,13,16,.35); font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 14px; white-space: nowrap; flex-shrink: 0" style-hover="background: rgba(142,240,182,.28)">{{ copyLabel }}</button>
+    </div>
     <a href="https://www.linkedin.com/in/rotemninyo/" target="_blank" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px" style-hover="border-color: #8ef0b6; color: #8ef0b6">LinkedIn</a>
     <a href="https://x.com/RotemNinyo" target="_blank" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px" style-hover="border-color: #8ef0b6; color: #8ef0b6">X / Twitter</a>
     <a href="Rotem_Ninyo_CV.pdf" download="Rotem_Ninyo_CV.pdf" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px; display: inline-flex; align-items: center; gap: 8px" style-hover="border-color: #8ef0b6; color: #8ef0b6">Download Resume ↓</a>
@@ -127,7 +144,7 @@
   <p style="margin: 64px 0 0; font-size: 13px; color: #565c66">© 2026 Rotem Ninyo · 3D Gameplay Animator</p>
 </section>
 </x-dc>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{&quot;openToWork&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;vimeoId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;846519353&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;openToWork&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;vimeoId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;846519353&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { lightbox: null };
   componentDidMount() {
@@ -142,6 +159,22 @@ class Component extends DCLogic {
       lightboxName: lb ? lb.name : '',
       lightboxVideo: lb ? lb.video : '',
       closeLightbox: () => this.setState({ lightbox: null }),
+      copyLabel: this.state.copied ? "✓ Copied" : "⧉ Copy",
+      copyEmail: () => {
+        const done = () => {
+          this.setState({ copied: true });
+          clearTimeout(this._ct);
+          this._ct = setTimeout(() => this.setState({ copied: false }), 2000);
+        };
+        navigator.clipboard.writeText("rotemnin248@gmail.com").then(done).catch(() => {
+          const ta = document.createElement("textarea");
+          ta.value = "rotemnin248@gmail.com";
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand("copy"); done(); } catch (e) {}
+          ta.remove();
+        });
+      },
       stopProp: (e) => e.stopPropagation(),
       openToWork: this.props.openToWork ?? true,
       vimeoSrc: "https://player.vimeo.com/video/" + (this.props.vimeoId ?? "846519353"),
@@ -153,7 +186,14 @@ class Component extends DCLogic {
         { video: "videos/project-5.mp4", name: "Project Five", role: "Character Animator", description: "Expressive character moments — emotes, interactions, and personality-driven idles." },
         { video: "videos/project-6.mp4", name: "Project Six", role: "Animator · Previs", description: "Gameplay previsualization and camera work to prove out mechanics before production." }
       ].map(p => ({ ...p, open: () => this.setState({ lightbox: p }) })),
-      tools: ["Autodesk Maya", "Unreal Engine", "Unity", "Blender"]
+      tools: ["Autodesk Maya", "Unreal Engine", "Unity", "Blender"],
+      experience: [
+        { role: "3D Gameplay Animator", studio: "Believer Entertainment", url: "https://believer.gg/", dates: "02/2026 – 06/2026" },
+        { role: "3D Gameplay Animator & Rigger", studio: "Double Dusk", url: "https://doubledusk.com/", dates: "10/2025 – Present" },
+        { role: "3D Gameplay Animator", studio: "Legion Studio — Covenant", url: "https://www.legionstudio.dev/", dates: "01/2024 – 10/2025" },
+        { role: "3D Gameplay Animator & Rigger", studio: "Cult of the North", url: "https://x.com/cultofthenorth", dates: "04/2025 – 06/2025" },
+        { role: "3D Gameplay Animator", studio: "Weird Beluga Studio — Duskfade", url: "https://twitter.com/i/status/1755275230354825704", dates: "09/2023 – 03/2024" }
+      ]
     };
   }
 }
