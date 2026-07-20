@@ -60,23 +60,23 @@
     <h2 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 44px); letter-spacing: -0.01em; color: #f4f5f7">Selected Work</h2>
     <span style="height: 1px; flex: 1; background: rgba(255,255,255,.1)"></span>
   </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(20px, 3vw, 32px)">
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 2.5vw, 32px)">
     <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
       <article onClick="{{ p.open }}" style="display: flex; flex-direction: column; gap: 14px; cursor: pointer; border-radius: 12px" style-hover="transform: translateY(-4px)">
         <div style="aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); background: #14161a; position: relative">
           <video src="{{ p.video }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
           <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(12,13,16,.25)">
-            <div style="width: 54px; height: 54px; border-radius: 50%; background: rgba(12,13,16,.6); border: 1px solid rgba(255,255,255,.3); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px)">
+            <div style="width: clamp(34px, 5vw, 54px); height: clamp(34px, 5vw, 54px); border-radius: 50%; background: rgba(12,13,16,.6); border: 1px solid rgba(255,255,255,.3); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px)">
               <div style="width: 0; height: 0; border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 15px solid #e8eaed; margin-left: 4px"></div>
             </div>
           </div>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
           <div style="display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; justify-content: space-between">
-            <h3 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 20px; color: #f4f5f7">{{ p.name }}</h3>
-            <span style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8ef0b6">{{ p.role }}</span>
+            <h3 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: clamp(14px, 2vw, 20px); color: #f4f5f7">{{ p.name }}</h3>
+            <span style="font-size: clamp(9px, 1.3vw, 12px); letter-spacing: .1em; text-transform: uppercase; color: #8ef0b6">{{ p.role }}</span>
           </div>
-          <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #a6acb5; text-wrap: pretty">{{ p.description }}</p>
+          <p style="margin: 0; font-size: clamp(11px, 1.5vw, 14px); line-height: 1.6; color: #a6acb5; text-wrap: pretty">{{ p.description }}</p>
         </div>
       </article>
     </sc-for>
@@ -119,7 +119,7 @@
   <h2 style="margin: 0 0 14px; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 700; font-size: clamp(30px, 4.5vw, 52px); color: #f4f5f7">Let's work together</h2>
   <p style="margin: 0 0 36px; font-size: 17px; color: #8a9099">Available for studio roles and animation contracts.</p>
   <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center">
-    <a href="mailto:rotemnin248@gmail.com" style="padding: 13px 26px; border-radius: 8px; background: #8ef0b6; color: #0c0d10; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 15px" style-hover="background: #b5f7cf; color: #0c0d10">rotemnin248@gmail.com</a>
+    <a href="/cdn-cgi/l/email-protection#82f0edf6e7efecebecb0b6bac2e5efe3ebeeace1edef" style="padding: 13px 26px; border-radius: 8px; background: #8ef0b6; color: #0c0d10; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 15px" style-hover="background: #b5f7cf; color: #0c0d10"><span class="__cf_email__" data-cfemail="a1d3ced5c4cccfc8cf939599e1c6ccc0c8cd8fc2cecc">[email&#160;protected]</span></a>
     <a href="https://www.linkedin.com/in/rotemninyo/" target="_blank" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px" style-hover="border-color: #8ef0b6; color: #8ef0b6">LinkedIn</a>
     <a href="https://x.com/RotemNinyo" target="_blank" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px" style-hover="border-color: #8ef0b6; color: #8ef0b6">X / Twitter</a>
     <a href="Rotem_Ninyo_CV.pdf" download="Rotem_Ninyo_CV.pdf" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px; display: inline-flex; align-items: center; gap: 8px" style-hover="border-color: #8ef0b6; color: #8ef0b6">Download Resume ↓</a>
@@ -127,7 +127,7 @@
   <p style="margin: 64px 0 0; font-size: 13px; color: #565c66">© 2026 Rotem Ninyo · 3D Gameplay Animator</p>
 </section>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;openToWork&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;vimeoId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;846519353&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{&quot;openToWork&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;vimeoId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;846519353&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { lightbox: null };
   componentDidMount() {
