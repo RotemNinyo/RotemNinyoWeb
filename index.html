@@ -29,7 +29,7 @@
 </nav>
 
 <header id="top" data-screen-label="Hero" style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 120px clamp(20px, 5vw, 64px) 80px; box-sizing: border-box; text-align: center; position: relative; overflow: hidden">
-  <video src="videos/hero-bg.mp4" autoPlay muted loop playsInline preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0"></video>
+  <video src="videos/hero-bg.mp4" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0"></video>
   <div style="position: absolute; inset: 0; background: linear-gradient(rgba(12,13,16,.72), rgba(12,13,16,.55) 45%, rgba(12,13,16,.9)); z-index: 1"></div>
   <div style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 22px">
     <sc-if value="{{ openToWork }}" hint-placeholder-val="{{ true }}">
@@ -51,7 +51,7 @@
     <span style="height: 1px; flex: 1; background: rgba(255,255,255,.1)"></span>
   </div>
   <div style="width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); box-shadow: 0 30px 80px rgba(0,0,0,.55); background: #14161a">
-    <x-import component-from-global-scope="frame-player" from="./player.js" src="videos/showreel.mp4" fps="60" loop="" hint-size="100%,100%"></x-import>
+    <iframe src="{{ vimeoSrc }}" style="width: 100%; height: 100%; border: 0; display: block" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen="{{ true }}" title="Showreel"></iframe>
   </div>
 </section>
 
@@ -64,7 +64,7 @@
     <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
       <article onClick="{{ p.open }}" style="display: flex; flex-direction: column; gap: 14px; cursor: pointer; border-radius: 12px" style-hover="transform: translateY(-4px)">
         <div style="aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); background: #14161a; position: relative">
-          <video src="{{ p.video }}" muted loop playsInline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
+          <video src="{{ p.video }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
           <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(12,13,16,.25)">
             <div style="width: 54px; height: 54px; border-radius: 50%; background: rgba(12,13,16,.6); border: 1px solid rgba(255,255,255,.3); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px)">
               <div style="width: 0; height: 0; border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 15px solid #e8eaed; margin-left: 4px"></div>
@@ -119,7 +119,7 @@
   <h2 style="margin: 0 0 14px; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 700; font-size: clamp(30px, 4.5vw, 52px); color: #f4f5f7">Let's work together</h2>
   <p style="margin: 0 0 36px; font-size: 17px; color: #8a9099">Available for studio roles and animation contracts.</p>
   <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center">
-    <a href="mailto:rotem.ninyo@gmail.com" style="padding: 13px 26px; border-radius: 8px; background: #8ef0b6; color: #0c0d10; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 15px" style-hover="background: #b5f7cf; color: #0c0d10">rotem.ninyo@gmail.com</a>
+    <a href="/cdn-cgi/l/email-protection#5f2d302b3a327131363126301f38323e3633713c3032" style="padding: 13px 26px; border-radius: 8px; background: #8ef0b6; color: #0c0d10; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 15px" style-hover="background: #b5f7cf; color: #0c0d10"><span class="__cf_email__" data-cfemail="6a18051e0f074404030413052a0d070b030644090507">[email&#160;protected]</span></a>
     <a href="https://www.linkedin.com/" target="_blank" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px" style-hover="border-color: #8ef0b6; color: #8ef0b6">LinkedIn</a>
     <a href="https://x.com/" target="_blank" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px" style-hover="border-color: #8ef0b6; color: #8ef0b6">X / Twitter</a>
     <a href="#" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px; display: inline-flex; align-items: center; gap: 8px" style-hover="border-color: #8ef0b6; color: #8ef0b6">Download Resume ↓</a>
@@ -127,7 +127,7 @@
   <p style="margin: 64px 0 0; font-size: 13px; color: #565c66">© 2026 Rotem Ninyo · 3D Gameplay Animator</p>
 </section>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;openToWork&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{&quot;openToWork&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;vimeoId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;846519353&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { lightbox: null };
   componentDidMount() {
@@ -144,6 +144,7 @@ class Component extends DCLogic {
       closeLightbox: () => this.setState({ lightbox: null }),
       stopProp: (e) => e.stopPropagation(),
       openToWork: this.props.openToWork ?? true,
+      vimeoSrc: "https://player.vimeo.com/video/" + (this.props.vimeoId ?? "846519353"),
       projects: [
         { video: "videos/project-1.mp4", name: "Project One", role: "Gameplay Animator", description: "Full locomotion set and combat animations for a third-person action title — responsive movement, weapon handling, and hit reactions built for tight player feedback." },
         { video: "videos/project-2.mp4", name: "Project Two", role: "Character Animator", description: "Creature and NPC animation, from idle behaviors to full attack cycles, with a focus on readable silhouettes and weight." },
