@@ -11,6 +11,10 @@
     full: '<svg viewBox="0 0 16 16" width="14" height="14"><path d="M1.5 6V1.5H6M10 1.5h4.5V6M14.5 10v4.5H10M6 14.5H1.5V10" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>'
   };
   class FramePlayer extends HTMLElement {
+    static get observedAttributes() { return ['src']; }
+    attributeChangedCallback(name, oldV, newV) {
+      if (name === 'src' && this.v && newV && this.v.getAttribute('src') !== newV) { this.v.src = newV; }
+    }
     connectedCallback() {
       if (this._built) return;
       this._built = true;

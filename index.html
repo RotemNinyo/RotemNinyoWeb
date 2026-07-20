@@ -28,42 +28,74 @@
   </div>
 </nav>
 
-<header id="top" data-screen-label="Hero" style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; padding: 120px clamp(20px, 5vw, 64px) 80px; box-sizing: border-box; text-align: center">
-  <sc-if value="{{ openToWork }}" hint-placeholder-val="{{ true }}">
-    <div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(142,240,182,.35); border-radius: 999px; padding: 6px 14px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8ef0b6">
-      <span style="width: 7px; height: 7px; border-radius: 50%; background: #8ef0b6"></span>
-      Open to work
-    </div>
-  </sc-if>
-  <h1 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 700; font-size: clamp(44px, 8vw, 104px); line-height: 1.02; letter-spacing: -0.02em; color: #f4f5f7">Rotem Ninyo</h1>
-  <p style="margin: 0; font-size: clamp(16px, 2vw, 22px); letter-spacing: .22em; text-transform: uppercase; color: #8a9099">3D Gameplay Animator</p>
-  <div style="width: min(1080px, 100%); aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); box-shadow: 0 30px 80px rgba(0,0,0,.55); position: relative; background: #14161a">
-    <x-import component-from-global-scope="frame-player" from="./player.js" src="videos/showreel.mp4" fps="60" autoplay="" loop="" hint-size="100%,100%"></x-import>
+<header id="top" data-screen-label="Hero" style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 120px clamp(20px, 5vw, 64px) 80px; box-sizing: border-box; text-align: center; position: relative; overflow: hidden">
+  <video src="videos/hero-bg.mp4" autoPlay muted loop playsInline preload="auto" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0"></video>
+  <div style="position: absolute; inset: 0; background: linear-gradient(rgba(12,13,16,.72), rgba(12,13,16,.55) 45%, rgba(12,13,16,.9)); z-index: 1"></div>
+  <div style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 22px">
+    <sc-if value="{{ openToWork }}" hint-placeholder-val="{{ true }}">
+      <div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(142,240,182,.35); border-radius: 999px; padding: 6px 14px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8ef0b6; background: rgba(12,13,16,.4)">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: #8ef0b6"></span>
+        Open to work
+      </div>
+    </sc-if>
+    <h1 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 700; font-size: clamp(52px, 9vw, 120px); line-height: 1.02; letter-spacing: -0.02em; color: #f4f5f7; text-shadow: 0 4px 40px rgba(0,0,0,.6)">Rotem Ninyo</h1>
+    <p style="margin: 0; font-size: clamp(16px, 2vw, 22px); letter-spacing: .22em; text-transform: uppercase; color: #b7bcc4; text-shadow: 0 2px 20px rgba(0,0,0,.6)">3D Gameplay Animator</p>
+    <a href="#showreel" style="display: inline-block; margin-top: 18px; padding: 14px 34px; border-radius: 8px; background: #8ef0b6; color: #0c0d10; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: .04em" style-hover="background: #b5f7cf; color: #0c0d10">View My Work</a>
   </div>
-  <a href="#work" style="display: inline-block; margin-top: 6px; padding: 13px 30px; border-radius: 8px; background: #8ef0b6; color: #0c0d10; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: .04em" style-hover="background: #b5f7cf; color: #0c0d10">View My Work</a>
+  <a href="#showreel" style="position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 2; color: #8a9099; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 6px" style-hover="color: #8ef0b6">Scroll<span style="font-size: 16px">↓</span></a>
 </header>
+
+<section id="showreel" data-screen-label="Showreel" style="padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 64px); max-width: 1180px; margin: 0 auto; box-sizing: border-box">
+  <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: clamp(28px, 4vw, 48px)">
+    <h2 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 44px); letter-spacing: -0.01em; color: #f4f5f7">Showreel</h2>
+    <span style="height: 1px; flex: 1; background: rgba(255,255,255,.1)"></span>
+  </div>
+  <div style="width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); box-shadow: 0 30px 80px rgba(0,0,0,.55); background: #14161a">
+    <x-import component-from-global-scope="frame-player" from="./player.js" src="videos/showreel.mp4" fps="60" loop="" hint-size="100%,100%"></x-import>
+  </div>
+</section>
 
 <section id="work" data-screen-label="Selected Work" style="padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 64px); max-width: 1180px; margin: 0 auto; box-sizing: border-box">
   <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: clamp(32px, 5vw, 56px)">
     <h2 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 700; font-size: clamp(30px, 4vw, 44px); letter-spacing: -0.01em; color: #f4f5f7">Selected Work</h2>
     <span style="height: 1px; flex: 1; background: rgba(255,255,255,.1)"></span>
   </div>
-  <div style="display: flex; flex-direction: column; gap: clamp(48px, 7vw, 88px)">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(20px, 3vw, 32px)">
     <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
-      <article style="display: flex; flex-direction: column; gap: 20px">
+      <article onClick="{{ p.open }}" style="display: flex; flex-direction: column; gap: 14px; cursor: pointer; border-radius: 12px" style-hover="transform: translateY(-4px)">
         <div style="aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); background: #14161a; position: relative">
-          <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #565c66; font-family: monospace; font-size: 13px">{{ p.video }}</div>
-          <x-import component-from-global-scope="frame-player" from="./player.js" src="{{ p.video }}" fps="60" loop="" hint-size="100%,100%" style="position: absolute; inset: 0"></x-import>
+          <video src="{{ p.video }}" muted loop playsInline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: block"></video>
+          <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(12,13,16,.25)">
+            <div style="width: 54px; height: 54px; border-radius: 50%; background: rgba(12,13,16,.6); border: 1px solid rgba(255,255,255,.3); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px)">
+              <div style="width: 0; height: 0; border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 15px solid #e8eaed; margin-left: 4px"></div>
+            </div>
+          </div>
         </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: baseline; justify-content: space-between">
-          <h3 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: clamp(22px, 2.6vw, 30px); color: #f4f5f7">{{ p.name }}</h3>
-          <span style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #8ef0b6">{{ p.role }}</span>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; justify-content: space-between">
+            <h3 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 20px; color: #f4f5f7">{{ p.name }}</h3>
+            <span style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #8ef0b6">{{ p.role }}</span>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #a6acb5; text-wrap: pretty">{{ p.description }}</p>
         </div>
-        <p style="margin: 0; max-width: 720px; font-size: 16px; line-height: 1.65; color: #a6acb5; text-wrap: pretty">{{ p.description }}</p>
       </article>
     </sc-for>
   </div>
 </section>
+
+<sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeLightbox }}" style="position: fixed; inset: 0; z-index: 100; background: rgba(5,6,8,.94); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: clamp(16px, 4vw, 48px); box-sizing: border-box">
+    <div onClick="{{ stopProp }}" style="width: min(1280px, 100%); display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px">
+        <h3 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: clamp(20px, 2.5vw, 28px); color: #f4f5f7">{{ lightboxName }}</h3>
+        <button onClick="{{ closeLightbox }}" style="all: unset; cursor: pointer; color: #b7bcc4; font-size: 15px; padding: 8px 14px; border: 1px solid rgba(255,255,255,.2); border-radius: 8px" style-hover="color: #8ef0b6; border-color: #8ef0b6">✕ Close</button>
+      </div>
+      <div style="width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); background: #0c0d10">
+        <x-import component-from-global-scope="frame-player" from="./player.js" src="{{ lightboxVideo }}" fps="60" autoplay="" loop="" hint-size="100%,100%"></x-import>
+      </div>
+    </div>
+  </div>
+</sc-if>
 
 <section id="about" data-screen-label="About" style="padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 64px); border-top: 1px solid rgba(255,255,255,.06); background: #0f1014">
   <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(36px, 6vw, 80px)">
@@ -97,15 +129,27 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;openToWork&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
+  state = { lightbox: null };
+  componentDidMount() {
+    this._esc = (e) => { if (e.key === 'Escape') this.setState({ lightbox: null }); };
+    window.addEventListener('keydown', this._esc);
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this._esc); }
   renderVals() {
+    const lb = this.state.lightbox;
     return {
+      lightboxOpen: !!lb,
+      lightboxName: lb ? lb.name : '',
+      lightboxVideo: lb ? lb.video : '',
+      closeLightbox: () => this.setState({ lightbox: null }),
+      stopProp: (e) => e.stopPropagation(),
       openToWork: this.props.openToWork ?? true,
       projects: [
         { video: "videos/project-1.mp4", name: "Project One", role: "Gameplay Animator", description: "Full locomotion set and combat animations for a third-person action title — responsive movement, weapon handling, and hit reactions built for tight player feedback." },
         { video: "videos/project-2.mp4", name: "Project Two", role: "Character Animator", description: "Creature and NPC animation, from idle behaviors to full attack cycles, with a focus on readable silhouettes and weight." },
         { video: "videos/project-3.mp4", name: "Project Three", role: "Animator · Implementation", description: "Animation implementation in-engine: state machines, blend spaces, and root-motion tuning to make every input feel immediate." }
-      ],
-      tools: ["Autodesk Maya", "MotionBuilder", "Unreal Engine", "Unity", "Blender", "ZBrush", "Perforce", "Cascadeur"]
+      ].map(p => ({ ...p, open: () => this.setState({ lightbox: p }) })),
+      tools: ["Autodesk Maya", "Unreal Engine", "Unity", "Blender"]
     };
   }
 }
