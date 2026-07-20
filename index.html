@@ -119,15 +119,15 @@
   <h2 style="margin: 0 0 14px; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 700; font-size: clamp(30px, 4.5vw, 52px); color: #f4f5f7">Let's work together</h2>
   <p style="margin: 0 0 36px; font-size: 17px; color: #8a9099">Available for studio roles and animation contracts.</p>
   <div style="display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center">
-    <a href="/cdn-cgi/l/email-protection#5f2d302b3a327131363126301f38323e3633713c3032" style="padding: 13px 26px; border-radius: 8px; background: #8ef0b6; color: #0c0d10; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 15px" style-hover="background: #b5f7cf; color: #0c0d10"><span class="__cf_email__" data-cfemail="6a18051e0f074404030413052a0d070b030644090507">[email&#160;protected]</span></a>
-    <a href="https://www.linkedin.com/" target="_blank" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px" style-hover="border-color: #8ef0b6; color: #8ef0b6">LinkedIn</a>
-    <a href="https://x.com/" target="_blank" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px" style-hover="border-color: #8ef0b6; color: #8ef0b6">X / Twitter</a>
-    <a href="#" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px; display: inline-flex; align-items: center; gap: 8px" style-hover="border-color: #8ef0b6; color: #8ef0b6">Download Resume ↓</a>
+    <a href="mailto:rotemnin248@gmail.com" style="padding: 13px 26px; border-radius: 8px; background: #8ef0b6; color: #0c0d10; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: 15px" style-hover="background: #b5f7cf; color: #0c0d10">rotemnin248@gmail.com</a>
+    <a href="https://www.linkedin.com/in/rotemninyo/" target="_blank" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px" style-hover="border-color: #8ef0b6; color: #8ef0b6">LinkedIn</a>
+    <a href="https://x.com/RotemNinyo" target="_blank" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px" style-hover="border-color: #8ef0b6; color: #8ef0b6">X / Twitter</a>
+    <a href="Rotem_Ninyo_CV.pdf" download="Rotem_Ninyo_CV.pdf" style="padding: 13px 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.16); color: #e8eaed; font-size: 15px; display: inline-flex; align-items: center; gap: 8px" style-hover="border-color: #8ef0b6; color: #8ef0b6">Download Resume ↓</a>
   </div>
   <p style="margin: 64px 0 0; font-size: 13px; color: #565c66">© 2026 Rotem Ninyo · 3D Gameplay Animator</p>
 </section>
 </x-dc>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{&quot;openToWork&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;vimeoId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;846519353&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;openToWork&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;vimeoId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;846519353&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { lightbox: null };
   componentDidMount() {
@@ -148,7 +148,10 @@ class Component extends DCLogic {
       projects: [
         { video: "videos/project-1.mp4", name: "Project One", role: "Gameplay Animator", description: "Full locomotion set and combat animations for a third-person action title — responsive movement, weapon handling, and hit reactions built for tight player feedback." },
         { video: "videos/project-2.mp4", name: "Project Two", role: "Character Animator", description: "Creature and NPC animation, from idle behaviors to full attack cycles, with a focus on readable silhouettes and weight." },
-        { video: "videos/project-3.mp4", name: "Project Three", role: "Animator · Implementation", description: "Animation implementation in-engine: state machines, blend spaces, and root-motion tuning to make every input feel immediate." }
+        { video: "videos/project-3.mp4", name: "Project Three", role: "Animator · Implementation", description: "Animation implementation in-engine: state machines, blend spaces, and root-motion tuning to make every input feel immediate." },
+        { video: "videos/project-4.mp4", name: "Project Four", role: "Gameplay Animator", description: "Melee combo system: attack chains, cancels, and recovery frames tuned for responsive combat." },
+        { video: "videos/project-5.mp4", name: "Project Five", role: "Character Animator", description: "Expressive character moments — emotes, interactions, and personality-driven idles." },
+        { video: "videos/project-6.mp4", name: "Project Six", role: "Animator · Previs", description: "Gameplay previsualization and camera work to prove out mechanics before production." }
       ].map(p => ({ ...p, open: () => this.setState({ lightbox: p }) })),
       tools: ["Autodesk Maya", "Unreal Engine", "Unity", "Blender"]
     };
