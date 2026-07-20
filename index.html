@@ -193,12 +193,12 @@ class Component extends DCLogic {
       openToWork: this.props.openToWork ?? true,
       vimeoSrc: "https://player.vimeo.com/video/" + (this.props.vimeoId ?? "846519353"),
       projects: [
-        { vimeo: "1208671173", name: "Boss Fight Prototype", role: "Gameplay Animator", description: "Responsible for the player and boss animation." },
-        { video: "videos/project-2.mp4", name: "Project Two", role: "Character Animator", description: "Creature and NPC animation, from idle behaviors to full attack cycles, with a focus on readable silhouettes and weight." },
-        { video: "videos/project-3.mp4", name: "Project Three", role: "Animator · Implementation", description: "Animation implementation in-engine: state machines, blend spaces, and root-motion tuning to make every input feel immediate." },
-        { video: "videos/project-4.mp4", name: "Project Four", role: "Gameplay Animator", description: "Melee combo system: attack chains, cancels, and recovery frames tuned for responsive combat." },
-        { video: "videos/project-5.mp4", name: "Project Five", role: "Character Animator", description: "Expressive character moments — emotes, interactions, and personality-driven idles." },
-        { video: "videos/project-6.mp4", name: "Project Six", role: "Animator · Previs", description: "Gameplay previsualization and camera work to prove out mechanics before production." }
+        { vimeo: "1208671173", name: "Boss Fight Prototype", role: "", description: "Responsible for the player and boss animation." },
+        { video: "videos/project-2.mp4", name: "Combo Animation", role: "", description: "Stylized combo animation with some bloopers at the end." },
+        { video: "videos/project-3.mp4", name: "Quadruped Locomotion Study", role: "", description: "" },
+        { video: "videos/project-4.mp4", name: "Dubu Fun Run Cycle", role: "", description: "Rigged and animated." },
+        { video: "videos/project-5.mp4", name: "Playing Will Ball", role: "", description: "" },
+        { video: "videos/project-6.mp4", name: "Gun Shot Combo", role: "", description: "Rigged and animated." }
       ].map(p => ({
         ...p,
         isVimeo: !!p.vimeo,
