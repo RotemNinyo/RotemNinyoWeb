@@ -50,9 +50,17 @@
   <button class="fs" title="Fullscreen">${ICONS.full}</button>
 </div>`;
       const v = this.v = root.querySelector('video');
-      v.src = this.getAttribute('src') || '';
+      v.playsInline = true;
       v.setAttribute('playsinline', '');
-      if (auto) v.setAttribute('muted', '');
+      v.setAttribute('webkit-playsinline', '');
+      if (auto) { v.muted = true; v.defaultMuted = true; v.setAttribute('muted', ''); }
+      v.src = this.getAttribute('src') || '';
+      if (auto) {
+        const tryPlay = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+        v.addEventListener('loadedmetadata', tryPlay);
+        v.addEventListener('canplay', tryPlay, { once: true });
+        this.addEventListener('touchend', tryPlay, { once: true });
+      }
       this.setAttribute('tabindex', '0');
       const $ = (s) => root.querySelector(s);
       const playBtn = $('.play'), muteBtn = $('.mute'),
@@ -79,6 +87,8 @@
       bar.addEventListener('pointerdown', (e) => e.stopPropagation());
       playBtn.addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); toggle(); });
       v.addEventListener('pointerdown', (e) => { e.stopPropagation(); toggle(); });
+      // iOS: some taps arrive only as touchend
+      playBtn.addEventListener('touchend', (e) => { e.stopPropagation(); e.preventDefault(); }, { passive: false });
       muteBtn.addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); v.muted = !v.muted; });
       $('.fs').addEventListener('pointerdown', (e) => {
         e.stopPropagation(); e.preventDefault();
