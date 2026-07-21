@@ -51,6 +51,8 @@
 </div>`;
       const v = this.v = root.querySelector('video');
       v.src = this.getAttribute('src') || '';
+      v.setAttribute('playsinline', '');
+      if (auto) v.setAttribute('muted', '');
       this.setAttribute('tabindex', '0');
       const $ = (s) => root.querySelector(s);
       const playBtn = $('.play'), muteBtn = $('.mute'),
@@ -78,7 +80,12 @@
       playBtn.addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); toggle(); });
       v.addEventListener('pointerdown', (e) => { e.stopPropagation(); toggle(); });
       muteBtn.addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); v.muted = !v.muted; });
-      $('.fs').addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); document.fullscreenElement === this ? document.exitFullscreen() : this.requestFullscreen(); });
+      $('.fs').addEventListener('pointerdown', (e) => {
+        e.stopPropagation(); e.preventDefault();
+        if (document.fullscreenElement === this) document.exitFullscreen();
+        else if (this.requestFullscreen) this.requestFullscreen();
+        else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); // iOS Safari
+      });
       range.oninput = () => { this._scrubbing = true; v.pause(); v.currentTime = range.value / this.fps; };
       range.onchange = () => { this._scrubbing = false; };
       this.addEventListener('keydown', (e) => {
