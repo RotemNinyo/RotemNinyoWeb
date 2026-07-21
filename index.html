@@ -118,6 +118,9 @@
         <sc-if value="{{ lightboxIsLocal }}" hint-placeholder-val="{{ false }}">
           <x-import component-from-global-scope="frame-player" from="./player.js" src="{{ lightboxVideo }}" fps="60" autoplay="" loop="" hint-size="100%,100%"></x-import>
         </sc-if>
+        <sc-if value="{{ lightboxIsNative }}" hint-placeholder-val="{{ false }}">
+          <video src="{{ lightboxVideo }}" controls="{{ true }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" style="width: 100%; height: 100%; object-fit: contain; display: block; background: #0c0d10"></video>
+        </sc-if>
       </div>
     </div>
   </div>
@@ -188,6 +191,9 @@ class Component extends DCLogic {
     setTimeout(() => clearInterval(this._iosFix), 6000);
   }
   componentWillUnmount() { window.removeEventListener('keydown', this._esc); }
+  _isTouch() {
+    return (window.matchMedia && window.matchMedia('(hover: none)').matches) || 'ontouchstart' in window;
+  }
   renderVals() {
     const lb = this.state.lightbox;
     return {
@@ -195,7 +201,8 @@ class Component extends DCLogic {
       lightboxName: lb ? lb.name : '',
       lightboxVideo: lb ? lb.video : '',
       lightboxIsVimeo: !!(lb && lb.vimeo),
-      lightboxIsLocal: !!(lb && !lb.vimeo),
+      lightboxIsLocal: !!(lb && !lb.vimeo && !this._isTouch()),
+      lightboxIsNative: !!(lb && !lb.vimeo && this._isTouch()),
       lightboxVimeoSrc: lb && lb.vimeo ? "https://player.vimeo.com/video/" + lb.vimeo + "?autoplay=1" : '',
       closeLightbox: () => this.setState({ lightbox: null }),
       copyLabel: this.state.copied ? "✓ Copied" : "⧉ Copy",
