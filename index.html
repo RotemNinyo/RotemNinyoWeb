@@ -95,7 +95,7 @@
         <div style="display: flex; flex-direction: column; gap: 8px">
           <div style="display: flex; flex-direction: column; gap: 5px">
             <h3 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: clamp(14px, 2vw, 20px); color: #f4f5f7">{{ p.name }}</h3>
-            <span style="font-size: clamp(9px, 1.3vw, 12px); letter-spacing: .1em; text-transform: uppercase; color: #8ef0b6">{{ p.role }}</span>
+            <span style="font-size: clamp(9px, 1.3vw, 12px); letter-spacing: .1em; text-transform: uppercase; color: #d9c493">{{ p.role }}</span>
           </div>
           <p style="margin: 0; font-size: clamp(11px, 1.5vw, 14px); line-height: 1.6; color: #a6acb5; text-wrap: pretty">{{ p.description }}</p>
         </div>
@@ -106,7 +106,7 @@
 
 <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
   <div onClick="{{ closeLightbox }}" style="position: fixed; inset: 0; z-index: 100; background: rgba(5,6,8,.94); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: clamp(16px, 4vw, 48px); box-sizing: border-box">
-    <div onClick="{{ stopProp }}" style="width: min(1280px, 100%); display: flex; flex-direction: column; gap: 14px">
+    <div onClick="{{ stopProp }}" style="width: min(1280px, 100%, calc((100vh - 160px) * 16 / 9)); max-height: 100%; display: flex; flex-direction: column; gap: 14px">
       <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px">
         <h3 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: clamp(20px, 2.5vw, 28px); color: #f4f5f7">{{ lightboxName }}</h3>
         <button onClick="{{ closeLightbox }}" style="all: unset; cursor: pointer; color: #b7bcc4; font-size: 15px; padding: 8px 14px; border: 1px solid rgba(255,255,255,.2); border-radius: 8px" style-hover="color: #8ef0b6; border-color: #8ef0b6">✕ Close</button>
@@ -138,7 +138,7 @@
           <div style="display: flex; gap: 16px; align-items: baseline; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.07); padding-bottom: 12px">
             <div style="display: flex; flex-direction: column; gap: 2px">
               <span style="font-size: 15px; font-weight: 600; color: #e8eaed">{{ e.role }}</span>
-              <a href="{{ e.url }}" target="_blank" style="font-size: 14px; color: #8ef0b6" style-hover="color: #b5f7cf">{{ e.studio }}</a>
+              <a href="{{ e.url }}" target="_blank" style="font-size: 14px; color: #8ef0b6; display: inline-flex; align-items: center; gap: 5px; text-decoration: underline; text-decoration-color: rgba(142,240,182,.4); text-underline-offset: 3px" style-hover="color: #b5f7cf; text-decoration-color: #b5f7cf">{{ e.studio }}<span style="font-size: 11px">↗</span></a>
             </div>
             <span style="font-size: 13px; color: #8a9099; white-space: nowrap">{{ e.dates }}</span>
           </div>
@@ -224,10 +224,10 @@ class Component extends DCLogic {
       })),
       tools: ["Autodesk Maya", "Unreal Engine", "Unity", "Blender"],
       experience: [
-        { role: "3D Gameplay Animator & Rigger", studio: "Double Dusk", url: "https://doubledusk.com/", dates: "10/2025 – Present" },
+        { role: "3D Gameplay Animator & Rigger", studio: "Double Dusk — Whisk", url: "https://doubledusk.com/", dates: "10/2025 – Present" },
         { role: "3D Gameplay Animator", studio: "Believer Entertainment", url: "https://believer.gg/", dates: "02/2026 – 06/2026" },
         { role: "3D Gameplay Animator", studio: "Legion Studio — Covenant", url: "https://www.legionstudio.dev/", dates: "01/2024 – 10/2025" },
-        { role: "3D Gameplay Animator & Rigger", studio: "Cult of the North", url: "https://x.com/cultofthenorth", dates: "04/2025 – 06/2025" },
+        { role: "3D Gameplay Animator & Rigger", studio: "Cult of the North — We Will Be Gods", url: "https://x.com/cultofthenorth", dates: "04/2025 – 06/2025" },
         { role: "3D Gameplay Animator", studio: "Weird Beluga Studio — Duskfade", url: "https://x.com/WeirdBeluga", dates: "09/2023 – 03/2024" }
       ]
     };
