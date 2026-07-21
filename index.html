@@ -8,6 +8,7 @@
 <body>
 <x-dc>
 <helmet>
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
@@ -77,7 +78,7 @@
           </div>
         </div>
         <div style="display: flex; flex-direction: column; gap: 8px">
-          <div style="display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; justify-content: space-between">
+          <div style="display: flex; flex-direction: column; gap: 5px">
             <h3 style="margin: 0; font-family: 'Space Grotesk', Helvetica, sans-serif; font-weight: 600; font-size: clamp(14px, 2vw, 20px); color: #f4f5f7">{{ p.name }}</h3>
             <span style="font-size: clamp(9px, 1.3vw, 12px); letter-spacing: .1em; text-transform: uppercase; color: #8ef0b6">{{ p.role }}</span>
           </div>
@@ -193,12 +194,12 @@ class Component extends DCLogic {
       openToWork: this.props.openToWork ?? true,
       vimeoSrc: "https://player.vimeo.com/video/" + (this.props.vimeoId ?? "846519353"),
       projects: [
-        { vimeo: "1208671173", name: "Boss Fight Prototype", role: "", description: "Responsible for the player and boss animation." },
-        { video: "videos/project-2.mp4", name: "Combo Animation", role: "", description: "Stylized combo animation with some bloopers at the end." },
-        { video: "videos/project-3.mp4", name: "Quadruped Locomotion Study", role: "", description: "" },
-        { video: "videos/project-4.mp4", name: "Dubu Fun Run Cycle", role: "", description: "Rigged and animated." },
-        { video: "videos/project-5.mp4", name: "Playing Will Ball", role: "", description: "" },
-        { video: "videos/project-6.mp4", name: "Gun Shot Combo", role: "", description: "Rigged and animated." }
+        { vimeo: "1208671173", name: "Boss Fight Prototype", role: "Player & Boss Animation", description: "Player and boss animation for a playable combat prototype." },
+        { video: "videos/project-2.mp4", name: "Combo Animation", role: "Animation", description: "Personal combo animation, with a few alternate takes at the end." },
+        { video: "videos/project-3.mp4", name: "Quadruped Locomotion Study", role: "Animation", description: "A quadruped animation study focused on weight and locomotion." },
+        { video: "videos/project-4.mp4", name: "Dubu Fun Run Cycle", role: "Animation & Rigging", description: "Character rig and run cycle created as a personal piece." },
+        { video: "videos/project-5.mp4", name: "Playing With a Ball", role: "Animation", description: "A short character animation built around a ball interaction." },
+        { video: "videos/project-6.mp4", name: "Gun Shot Combo", role: "Animation & Rigging", description: "Character rig and animation for a short combat combo." }
       ].map(p => ({
         ...p,
         isVimeo: !!p.vimeo,
@@ -212,7 +213,7 @@ class Component extends DCLogic {
         { role: "3D Gameplay Animator", studio: "Believer Entertainment", url: "https://believer.gg/", dates: "02/2026 – 06/2026" },
         { role: "3D Gameplay Animator", studio: "Legion Studio — Covenant", url: "https://www.legionstudio.dev/", dates: "01/2024 – 10/2025" },
         { role: "3D Gameplay Animator & Rigger", studio: "Cult of the North", url: "https://x.com/cultofthenorth", dates: "04/2025 – 06/2025" },
-        { role: "3D Gameplay Animator", studio: "Weird Beluga Studio — Duskfade", url: "https://twitter.com/i/status/1755275230354825704", dates: "09/2023 – 03/2024" }
+        { role: "3D Gameplay Animator", studio: "Weird Beluga Studio — Duskfade", url: "https://x.com/WeirdBeluga", dates: "09/2023 – 03/2024" }
       ]
     };
   }
