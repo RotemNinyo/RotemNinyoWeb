@@ -140,7 +140,7 @@
     <div style="display: flex; flex-direction: column; gap: 32px">
       <div style="display: flex; flex-direction: column; gap: 14px">
         <h3 style="margin: 0; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #8a9099">Experience</h3>
-        <sc-for list="{{ experience }}" as="e" hint-placeholder-count="5">
+        <sc-for list="{{ experience }}" as="e" hint-placeholder-count="6">
           <div style="display: flex; gap: 16px; align-items: baseline; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.07); padding-bottom: 12px">
             <div style="display: flex; flex-direction: column; gap: 2px">
               <span style="font-size: 15px; font-weight: 600; color: #e8eaed">{{ e.role }}</span>
@@ -259,7 +259,8 @@ class Component extends DCLogic {
       })),
       tools: ["Autodesk Maya", "Unreal Engine", "Unity", "Blender"],
       experience: [
-        { role: "3D Gameplay Animator & Rigger", studio: "Double Dusk — Whisk", url: "https://doubledusk.com/", dates: "10/2025 – Present" },
+        { role: "3D Gameplay Animator", studio: "HitZone Games — Invokers: Titan Legacy", url: "https://invokers.com/", dates: "08/2026 – Present" },
+        { role: "3D Gameplay Animator & Rigger", studio: "Double Dusk — Whisk", url: "https://doubledusk.com/", dates: "10/2025 – 09/2026" },
         { role: "3D Gameplay Animator", studio: "Believer Entertainment", url: "https://believer.gg/", dates: "02/2026 – 06/2026" },
         { role: "3D Gameplay Animator", studio: "Legion Studio — Covenant", url: "https://www.legionstudio.dev/", dates: "01/2024 – 10/2025" },
         { role: "3D Gameplay Animator & Rigger", studio: "Cult of the North — We Will Be Gods", url: "https://x.com/cultofthenorth", dates: "04/2025 – 06/2025" },
